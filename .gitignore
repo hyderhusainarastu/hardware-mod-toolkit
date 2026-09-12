@@ -1,0 +1,54 @@
+# Never commit anything captured from, or dumped out of, a real device.
+captures/
+dumps/
+backups/
+*.bin
+*.img
+*.dump
+*.rom
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+
+# Vendor firmware and vendor update packages are not redistributable.
+vendor/
+stock/
+firmware-stock/
+
+# Photographs of a specific physical unit carry serials, EXIF and GPS.
+photos/
+*.jpg
+*.jpeg
+*.HEIC
+*.heic
+*.png.orig
+
+# Serial/USB logs: these are the single most common place an SSID, a MAC or a
+# device serial reaches a commit. Redact first, then add the redacted file by
+# an explicit path -- never with `git add -A`.
+*.log
+serial-*.txt
+usb-*.txt
+
+# Local toolchain and build output
+.venv/
+venv/
+__pycache__/
+*.pyc
+build/
+sdkconfig
+sdkconfig.old
+managed_components/
+dist/
+node_modules/
+
+# Local, machine-specific Claude Code state (the checked-in plugin assets --
+# skills/, agents/, workflows/, .claude-plugin/ -- are NOT ignored).
+.claude/settings.local.json
+.claude/local/
+
+# Host cruft
+.DS_Store
+Thumbs.db
+*.swp

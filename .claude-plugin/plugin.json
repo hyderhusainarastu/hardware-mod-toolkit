@@ -1,0 +1,21 @@
+{
+  "name": "hardware-mod-toolkit",
+  "displayName": "Hardware Mod Toolkit",
+  "version": "0.1.0",
+  "description": "Skills, agents, workflows, templates and scripts for reverse-engineering and modding a consumer embedded device with Claude Code, without bricking it: photographic recon, passive USB/serial capture, static firmware analysis, verified backup and recovery, custom firmware bring-up, a framed host protocol, hardware-in-the-loop test discipline, and a publication-hygiene pass.",
+  "author": {
+    "name": "Hyder Husain Arastu"
+  },
+  "license": "MIT",
+  "keywords": [
+    "hardware",
+    "reverse-engineering",
+    "firmware",
+    "embedded",
+    "esp32",
+    "serial",
+    "recon",
+    "safety",
+    "publication-hygiene"
+  ]
+}
