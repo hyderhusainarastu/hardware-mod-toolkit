@@ -1,0 +1,14 @@
+{
+  "name": "hardware-mod-toolkit",
+  "description": "Claude Code plugin for reverse-engineering and modding consumer embedded devices without bricking them.",
+  "owner": {
+    "name": "Hyder Husain Arastu"
+  },
+  "plugins": [
+    {
+      "name": "hardware-mod-toolkit",
+      "source": "./",
+      "description": "Reverse-engineer and mod consumer embedded devices with Claude Code without bricking them: skills, subagents, workflows, templates and a 14-phase playbook."
+    }
+  ]
+}
