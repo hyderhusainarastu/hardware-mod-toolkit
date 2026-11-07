@@ -39,8 +39,8 @@ the one that is unrecoverable. This toolkit encodes that sequencing as:
 straight out of the checkout):
 
 ```
-/plugin marketplace add <owner>/hardware-mod-toolkit
-/plugin install hardware-mod-toolkit
+/plugin marketplace add hyderhusainarastu/hardware-mod-toolkit
+/plugin install hardware-mod-toolkit@hardware-mod-toolkit
 ```
 
 Or point Claude Code at a local clone of this repo as a marketplace and install from there.
@@ -49,7 +49,8 @@ Or point Claude Code at a local clone of this repo as a marketplace and install 
 project, and expect to edit them for your specific device):
 
 ```
-git clone <this repo>
+git clone https://github.com/hyderhusainarastu/hardware-mod-toolkit.git
+cd hardware-mod-toolkit
 ./scripts/install-local.sh --target /path/to/your/mod-project
 ```
 
