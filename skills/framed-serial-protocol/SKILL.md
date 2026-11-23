@@ -1,6 +1,6 @@
 ---
 name: framed-serial-protocol
-description: "Design and implement a framed request/response protocol over a serial or CDC link between a host and an embedded device: frame layout with CRC, sequence numbers, ACK/NACK with informational error codes, resync, timeouts, a mock transport for tests, and exclusive port ownership. Use when building host tooling that talks to custom firmware, or when debugging desynchronisation, duplicate frames, or port contention."
+description: "Design a framed request/response protocol over a serial or CDC link: CRC, sequence numbers, ACK/NACK codes, resync, timeouts, mock transport, exclusive port ownership. Use when building host tooling for custom firmware or debugging desync, duplicate frames or port contention."
 ---
 
 # framed-serial-protocol

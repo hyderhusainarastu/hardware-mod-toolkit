@@ -1,6 +1,6 @@
 ---
 name: custom-firmware-bringup
-description: Bring up custom firmware on a reverse-engineered device without bricking it or chasing avoidable first-boot failures - component layout, config gates that stay off by default, a display bring-up checklist, task stack budgeting, power-latch and USB-PHY handling, and a per-release build/package/verify loop. Use when writing or debugging the first builds of custom firmware for an existing device.
+description: "Bring up custom firmware on a reverse-engineered device without avoidable first-boot failures: component layout, off-by-default config gates, display checklist, stack budgeting, power-latch and USB-PHY handling. Use when writing or debugging first builds of custom device firmware."
 ---
 
 # Custom firmware bring-up

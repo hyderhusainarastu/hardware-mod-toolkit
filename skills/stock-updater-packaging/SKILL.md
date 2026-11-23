@@ -1,6 +1,6 @@
 ---
 name: stock-updater-packaging
-description: Install custom firmware through a device vendor updater path (SD card, USB mass storage, or OTA archive) instead of a hardware programmer -- derive the updater acceptance rules, build a conforming package, rehearse the pipeline against the stock release, and stage a first install safely. Use when a device has a stock update mechanism and you want to run your own build on it, or to reinstall stock as a recovery path.
+description: "Install custom firmware through a vendor updater (SD card, USB mass storage or OTA archive) instead of a programmer: derive acceptance rules, build a conforming package, rehearse against stock, stage the first install. Use to run your own build on a device or reinstall stock."
 ---
 
 # Stock updater packaging

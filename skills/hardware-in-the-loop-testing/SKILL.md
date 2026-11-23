@@ -1,6 +1,6 @@
 ---
 name: hardware-in-the-loop-testing
-description: "Make hardware-safety rules machine-enforced rather than advisory: a force-mock environment gate so no automated run can open a real device, fake transports in tests, static regression guards that fail on the source pattern behind a past crash, shared host/firmware test vectors, and a human-run hardware checklist. Use when agents or CI run against a project that also talks to real hardware."
+description: "Make hardware-safety rules machine-enforced: a force-mock gate so automated runs never open a real device, fake transports, static regression guards, shared test vectors, a human hardware checklist. Use when agents or CI run against a project that also talks to real hardware."
 ---
 
 # hardware-in-the-loop-testing

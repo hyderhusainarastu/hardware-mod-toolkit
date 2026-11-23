@@ -1,6 +1,6 @@
 ---
 name: moderator-operating-model
-description: Set up the operating rules for a hardware reverse-engineering or modding project before any work starts -- a delegating moderator session, hard safety constraints on an irreplaceable device, a CONFIRMED/STRONGLY INDICATED/POSSIBLE/UNKNOWN evidence standard, one-physical-experiment-at-a-time, and a never-commit-sensitive-data rule. Use at the start of a new device project, or when an existing project has no CLAUDE.md.
+description: "Set operating rules for a hardware reverse-engineering project before work starts: a delegating moderator session, hard device-safety constraints, a four-level evidence standard, one physical experiment at a time, no sensitive data in commits. Use at the start of a device project."
 ---
 
 # Moderator operating model

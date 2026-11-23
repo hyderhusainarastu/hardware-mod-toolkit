@@ -22,12 +22,20 @@
 #   ./scripts/install-local.sh --target /path/to/your/mod-project --dry-run
 #   ./scripts/install-local.sh --target /path/to/your/mod-project --force
 #   ./scripts/install-local.sh --self        # install into this checkout itself
+#   ./scripts/install-local.sh --codex --target /path/to/your/mod-project
+#   ./scripts/install-local.sh --codex --user
 #
 #   --target DIR   Project root to install into. Quote it if it contains a
 #                  space. Must already exist.
 #   --self         Shorthand for --target <this toolkit's own root>, so the
 #                  workflows can be run as named project workflows from inside
 #                  the toolkit checkout while you develop them.
+#   --codex        Link skills/* as symlinks into <target>/.agents/skills/<name>
+#                  (read by Codex, Cursor and Gemini CLI) and install nothing
+#                  else. With --user the links go to ~/.agents/skills and no
+#                  --target is needed. An existing path that is not already a
+#                  link into this checkout is left alone unless --force.
+#   --user         Only with --codex: use the user-level skills dir.
 #   --force        Overwrite files that already exist at the destination.
 #                  Without this, existing files are left alone and reported.
 #   --dry-run      Print what would be copied and change nothing.
@@ -55,6 +63,8 @@ set -euo pipefail
 HERE="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
 TARGET=""
+CODEX=0
+USER_MODE=0
 FORCE=0
 DRY=0
 
@@ -66,6 +76,8 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --target) [ $# -ge 2 ] || die "--target needs a directory"; TARGET="$2"; shift 2 ;;
     --self)   TARGET="$HERE"; shift ;;
+    --codex)  CODEX=1; shift ;;
+    --user)   USER_MODE=1; shift ;;
     --force)  FORCE=1; shift ;;
     --dry-run|--dry) DRY=1; shift ;;
     -h|--help) usage; exit 0 ;;
@@ -73,6 +85,12 @@ while [ $# -gt 0 ]; do
   esac
 done
 
+[ "$USER_MODE" -eq 0 ] || [ "$CODEX" -eq 1 ] || die "--user is only valid with --codex"
+if [ "$CODEX" -eq 1 ] && [ "$USER_MODE" -eq 1 ]; then
+  [ -n "${HOME:-}" ] || die "HOME is not set"
+  mkdir -p -- "$HOME/.agents/skills"
+  TARGET="$HOME"
+fi
 [ -n "$TARGET" ] || die "no target. Pass --target /path/to/project (or --self)."
 [ -d "$TARGET" ] || die "target is not a directory: $TARGET"
 
@@ -101,6 +119,35 @@ copy_one() {
   fi
   copied=$((copied + 1))
 }
+
+if [ "$CODEX" -eq 1 ]; then
+  if [ "$USER_MODE" -eq 1 ]; then base="$HOME/.agents/skills"; else base="$TARGET/.agents/skills"; fi
+  echo "codex / .agents skills (symlinks into this checkout):"
+  linked=0
+  for d in "$HERE"/skills/*/; do
+    [ -d "$d" ] || continue
+    name="$(basename -- "$d")"
+    dst="$base/$name"
+    if [ -L "$dst" ] && [ "$(cd -- "$dst" 2>/dev/null && pwd -P)" = "$(cd -- "$d" && pwd -P)" ]; then
+      echo "  ok (already linked)  $dst"
+      continue
+    fi
+    if { [ -e "$dst" ] || [ -L "$dst" ]; } && [ "$FORCE" -eq 0 ]; then
+      echo "  skip (exists)  $dst"
+      continue
+    fi
+    echo "  link           $dst"
+    if [ "$DRY" -eq 0 ]; then
+      mkdir -p -- "$base"
+      rm -rf -- "$dst"
+      ln -s -- "${d%/}" "$dst"
+    fi
+    linked=$((linked + 1))
+  done
+  echo
+  echo "install-local.sh: $linked linked under $base."
+  exit 0
+fi
 
 echo "skills:"
 for d in "$HERE"/skills/*/; do

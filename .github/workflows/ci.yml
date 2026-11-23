@@ -1,0 +1,11 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n install.sh scripts/*.sh tests/test_install.sh
+      - run: bash tests/test_install.sh

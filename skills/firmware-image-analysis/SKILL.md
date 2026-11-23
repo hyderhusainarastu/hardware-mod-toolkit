@@ -1,6 +1,6 @@
 ---
 name: firmware-image-analysis
-description: "Analyse a firmware image or vendor update archive statically: decode the partition table and image headers, determine whether it is signed or encrypted, mine strings and log formats, map subsystems, and read the few functions that matter. Use when reverse engineering device behaviour from a firmware binary instead of from hardware, and when deciding what a custom build must reproduce."
+description: "Statically analyse a firmware image or vendor update archive: partition table, image headers, signed or encrypted status, strings and log formats, subsystem map. Use when reverse engineering device behaviour from a firmware binary, or deciding what a custom build must reproduce."
 ---
 
 # Firmware image analysis

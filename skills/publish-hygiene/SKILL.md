@@ -1,6 +1,6 @@
 ---
 name: publish-hygiene
-description: Audit a private project before publishing it and build a curated public export -- scan for secrets, personal data, vendor intellectual property, oversized or EXIF-bearing media, process narrative, and fresh-clone portability; then export with fresh history, apply redaction rules, and verify independently before pushing. Use before open-sourcing any repository that touched real hardware, vendor firmware, or personal infrastructure.
+description: "Audit a private project before publishing and build a curated public export: scan for secrets, personal data, vendor IP, EXIF media and process narrative, redact, export with fresh history, verify independently. Use before open-sourcing a repo that touched real hardware or vendor firmware."
 ---
 
 # Publish hygiene

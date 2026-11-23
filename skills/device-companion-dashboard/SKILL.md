@@ -1,6 +1,6 @@
 ---
 name: device-companion-dashboard
-description: "Build a host-side companion dashboard that renders to a small monochrome or few-level device panel: image and text rendering to 1 or 2 bpp, dirty-rectangle partial refresh, a YAML widget/layout config, user-switchable presets, and one-shot notifications that coexist with a running loop. Use when driving a small device display from a host, or when a panel update is too slow or visibly garbled."
+description: "Build a host-side dashboard that renders to a small 1 or 2 bpp device panel: image and text rendering, dirty-rectangle partial refresh, YAML widget config, presets, one-shot notifications. Use when driving a small device display from a host or when panel updates are slow or garbled."
 ---
 
 # Device companion dashboard

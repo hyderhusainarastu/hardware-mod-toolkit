@@ -1,6 +1,6 @@
 ---
 name: serial-and-usb-recon
-description: Passively observe a USB device enumerating and capture its boot/console log without ever writing a byte to it, then redact SSIDs, MACs and serial numbers before the capture is committed. Use when identifying an unknown USB device, capturing a boot log from a short-lived serial node, or preparing captures for a repository.
+description: "Passively watch a USB device enumerate and capture its boot/console log without writing a byte to it, then redact SSIDs, MACs and serials before commit. Use when identifying an unknown USB device, capturing a short-lived serial node, or preparing captures for a repository."
 ---
 
 # serial-and-usb-recon

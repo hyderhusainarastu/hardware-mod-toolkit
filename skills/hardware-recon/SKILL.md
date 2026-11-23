@@ -1,6 +1,6 @@
 ---
 name: hardware-recon
-description: Identify a PCB from photographs -- preserve originals with a hash manifest, read module and silkscreen markings without guessing, inventory components and connectors, and grade every claim CONFIRMED / STRONGLY INDICATED / POSSIBLE / UNKNOWN. Use when starting hardware reverse engineering from photos of a board, or when a hardware claim needs its evidence checked.
+description: "Identify a PCB from photographs: hash-manifest the originals, read markings without guessing, inventory components and connectors, grade each claim CONFIRMED / STRONGLY INDICATED / POSSIBLE / UNKNOWN. Use when starting hardware reverse engineering from board photos or checking a claim's evidence."
 ---
 
 # Hardware recon

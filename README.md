@@ -33,29 +33,47 @@ the one that is unrecoverable. This toolkit encodes that sequencing as:
   stays blank. A backup that was never test-restored. An SSID redacted in the working tree
   but still sitting in git history.
 
+## Works with
+
+| Surface | How | Status |
+|---|---|---|
+| Claude Code | native plugin: skills, subagents and workflows load from the checkout | not tested |
+| Codex | native skills via `.agents/skills`; `AGENTS.md` for instructions | not tested |
+| Gemini CLI | native skills via `.agents/skills`; `GEMINI.md` points at `AGENTS.md` | not tested |
+| Cursor | skills via `.agents/skills`; reads `AGENTS.md` | not tested |
+| Copilot | `.github/copilot-instructions.md` points at `AGENTS.md` | not tested |
+| ChatGPT / Claude.ai / Gemini (chat) | paste [`PROMPT.md`](PROMPT.md) | not tested |
+
+The skills, templates, scripts and playbook are plain Markdown and shell and do not depend on
+any one tool. The subagents and the six `workflows/*.js` scripts are Claude Code features;
+other tools use [`docs/workflows-as-steps.md`](docs/workflows-as-steps.md).
+
 ## Install
 
-**As a plugin** (recommended — Claude Code reads `skills/`, `agents/` and `workflows/`
-straight out of the checkout):
+| Surface | Command |
+|---|---|
+| Claude Code (plugin) | `/plugin marketplace add hyderhusainarastu/hardware-mod-toolkit` then `/plugin install hardware-mod-toolkit` |
+| Claude Code (skills only) | `./install.sh --claude` (user) or `./install.sh --claude --project DIR` |
+| Claude Code (project copy) | `./scripts/install-local.sh --target DIR` copies skills, agents, workflows and templates into `DIR/.claude/` |
+| Codex, Cursor, Gemini CLI | `./install.sh --agents --project DIR` or `./scripts/install-local.sh --codex --target DIR` (links into `DIR/.agents/skills`); add `--user` for `~/.agents/skills` |
+| Gemini CLI, Cursor, Copilot instructions | `./install.sh --gemini` / `--cursor` / `--copilot --project DIR` adds a pointer block to `GEMINI.md`, `AGENTS.md` or `.github/copilot-instructions.md` |
+| ChatGPT, Claude.ai, Gemini chat | paste [`PROMPT.md`](PROMPT.md) |
 
-```
-/plugin marketplace add <owner>/hardware-mod-toolkit
-/plugin install hardware-mod-toolkit
-```
+Clone first: `git clone https://github.com/hyderhusainarastu/hardware-mod-toolkit`. Every
+installer takes `--dry-run`, refuses to overwrite anything it does not own, and
+`./install.sh --uninstall` removes only what it installed. `install-local.sh` copies, so
+re-running it never overwrites your edits unless you pass `--force`.
 
-Or point Claude Code at a local clone of this repo as a marketplace and install from there.
+## Using with other AI tools
 
-**As a project-local copy** (when you want the assets versioned alongside your own mod
-project, and expect to edit them for your specific device):
-
-```
-git clone <this repo>
-./scripts/install-local.sh --target /path/to/your/mod-project
-```
-
-That copies skills into `.claude/skills/`, agents into `.claude/agents/`, workflows into
-`.claude/workflows/`, and the templates and reference docs into `docs/toolkit/`. Re-running it
-never overwrites your edits unless you pass `--force`; `--dry-run` shows you the plan first.
+Start from [`AGENTS.md`](AGENTS.md): it holds the rules an agent follows (no write before a
+tested backup, one physical experiment at a time, evidence grades, no real ports from
+automated runs). `CLAUDE.md`, `GEMINI.md` and `.github/copilot-instructions.md` only point at
+it. Skills are `skills/<name>/SKILL.md` and load natively where the tool reads
+`.agents/skills`. For a chat window with no file access, paste [`PROMPT.md`](PROMPT.md). The
+workflow scripts are Claude Code only; the same sequences, written as numbered manual steps
+with independent sessions where the script uses independent subagents, are in
+[`docs/workflows-as-steps.md`](docs/workflows-as-steps.md).
 
 **Then**, before anything else: copy [`templates/CLAUDE.md`](templates/CLAUDE.md) to your
 project's `CLAUDE.md` and fill in every placeholder you already know. Leave the rest as
@@ -155,15 +173,21 @@ are measurements from it, not illustrations.
 Nothing device-specific from that project is reproduced here: no vendor binaries, no vendor
 text, no serial numbers, no MAC addresses, no photographs.
 
-## Built with Claude Code
+## Related
 
-This is a Claude Code plugin, and the process it encodes was itself run through Claude Code —
-a moderator session that delegated every substantive piece of work to subagents on explicitly
-chosen model tiers, with adversarial verification before any finding was promoted. The
-`moderator-operating-model` skill and the six workflow scripts are that arrangement, made
-reusable. You do not need to work that way to use the skills, templates and scripts; if you do
-want to, Phase 0 of the playbook sets it up.
+- [`byok-mod`](https://github.com/hyderhusainarastu/byok-mod): the worked example this
+  toolkit was extracted from (ESP32-S3 writing device: flash layout, SD updater, USB protocol).
+- [`ai-coding-agent-guardrail-hooks`](https://github.com/hyderhusainarastu/ai-coding-agent-guardrail-hooks):
+  hooks that block risky agent actions; pair them with the no-write-before-backup rule here.
+
+## Keywords
+
+reverse engineering, firmware analysis, ESP32, ESP-IDF, flash backup, embedded device,
+hardware hacking, SKILL.md, agent skills, Claude Code plugin, Codex, AGENTS.md.
 
 ## Licence
 
 MIT — see [LICENSE](LICENSE).
+
+---
+Part of palimnote-skills - more at https://github.com/hyderhusainarastu

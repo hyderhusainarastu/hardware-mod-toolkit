@@ -1,6 +1,6 @@
 ---
 name: mcu-safe-backup
-description: Identify and back up an MCU flash read-only before any modification. Find the download-mode window, run identification and partition-table reads, take a two-pass verified full dump, and establish a tested recovery path. Use before any operation that could write, erase, or brick a device, and when auditing whether a backup is actually sufficient to recover.
+description: "Back up an MCU flash read-only before any modification: find the download-mode window, read ID and partition table, take a two-pass verified dump, establish a tested recovery path. Use before any operation that could write, erase or brick a device, or to audit whether a backup suffices."
 ---
 
 # mcu-safe-backup
