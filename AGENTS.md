@@ -34,7 +34,7 @@ and modding an embedded device without bricking it. Skills use the SKILL.md form
 
 - Test: `bash tests/test_install.sh` (offline; uses a temporary HOME and project).
 - Syntax check: `bash -n install.sh scripts/*.sh`.
-- Keep each SKILL.md `description` at or under 300 characters and the body under 300 lines;
+- Keep each SKILL.md `description` at or under 300 characters and the body under 400 lines (aim for 300 or fewer);
   put detail in the skill's `references/` directory.
 - Do not add vendor binaries, captures or photographs. `.gitignore` blocks the common ones.
 - Do not edit `.claude-plugin/plugin.json` author fields without the owner's say-so.
